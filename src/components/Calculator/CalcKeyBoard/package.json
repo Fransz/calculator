@@ -1,0 +1,6 @@
+{
+  "name": "CalcKeyboard",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./CalcKeyboard.js"
+}

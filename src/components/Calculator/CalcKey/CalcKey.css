@@ -1,0 +1,11 @@
+.root {
+   line-height: 40px;
+}
+
+.calckey {
+   font-weight: bold;
+   border: 1px solid black;
+   margin-top:10px;
+   margin-bottom:10px;
+   text-align: center;
+}

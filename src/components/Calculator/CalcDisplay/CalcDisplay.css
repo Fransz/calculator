@@ -1,0 +1,11 @@
+.root{
+    border: 1px solid green;
+    line-height: 40px;
+    min-height:62px;
+
+    padding-top: 10px;
+    padding-bottom:10px;
+    padding-right: 1em;
+
+    text-align: right;
+}

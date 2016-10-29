@@ -1,0 +1,6 @@
+{
+  "name": "CalcOperatorboard",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./CalcOperatorboard.js"
+}
