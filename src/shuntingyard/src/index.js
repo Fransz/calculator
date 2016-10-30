@@ -10,13 +10,13 @@ const operators = {
 
 function parse(input=[]) {
     const intRe = /^[0-9]+$/;
-    const floatRe = /^[0-9]*(\.(?![0-9]*\.))?[0-9]$/;
+    const floatRe = /^[0-9]+(\.(?![0-9]*\.))?[0-9]*$/;
 
     return input.map((i) => {
         if (typeof i === "number") {
             return i;
         }
-        if (Object.keys(operators).includes(i)) {
+        if (Object.keys(operators).includes(i) || i === "(" || i === ")") {
             return i;
         }
         if(typeof i === "string" && intRe.test(i)) {

@@ -18,6 +18,7 @@ describe("rpn.parse", function() {
         rpn.parse([0.1]).should.be.eql([0.1]);
         rpn.parse([3.1]).should.be.eql([3.1]);
         rpn.parse([123.1]).should.be.eql([123.1]);
+        rpn.parse([1/3]).should.be.eql([1/3]);
         rpn.parse([Number.MAX_SAFE_INTEGER - 0.1]).should.be.eql([Number.MAX_SAFE_INTEGER - 0.1]);
     });
 
@@ -27,6 +28,8 @@ describe("rpn.parse", function() {
         rpn.parse(["*"]).should.be.eql(["*"]);
         rpn.parse(["/"]).should.be.eql(["/"]);
         rpn.parse(["^"]).should.be.eql(["^"]);
+        rpn.parse(["("]).should.be.eql(["("]);
+        rpn.parse([")"]).should.be.eql([")"]);
     });
 
     it("should return an integer if the input can be parsed as integer", function() {
@@ -40,15 +43,8 @@ describe("rpn.parse", function() {
         rpn.parse(["0.1"]).should.be.eql([0.1]);
         rpn.parse(["3.1"]).should.be.eql([3.1]);
         rpn.parse(["123.1"]).should.be.eql([123.1]);
+        rpn.parse(["0.3333333333333333"]).should.be.eql([1/3]);
         rpn.parse([(Number.MAX_SAFE_INTEGER - 0.1).toString()]).should.be.eql([Number.MAX_SAFE_INTEGER - 0.1]);
-    });
-
-    it("should parse strings with '(' and ')'", function() {
-        rpn.parse(["(0)"]).should.be.eql(["(", 0, ")"]);
-        rpn.parse(["(" + Number.MAX_SAFE_INTEGER.toString() + ")"]).should.be.eql(["(", Number.MAX_SAFE_INTEGER, ")"]);
-
-        rpn.parse(["(123.1)"]).should.be.eql(["(", 123.1, ")"]);
-        rpn.parse(["(" + (Number.MAX_SAFE_INTEGER - 0.1).toString() +")"]).should.be.eql("(", [Number.MAX_SAFE_INTEGER - 0.1, ")"]);
     });
 
     it("should throw on other inputs", function() {
@@ -61,7 +57,7 @@ describe("rpn.parse", function() {
 
         should.throws(() => rpn.parse(["1.1.1"]));
         should.throws(() => rpn.parse(["+a"]));
-    })
+    });
 });
 
 describe("shuntingYard", function() {
