@@ -8,6 +8,27 @@ const operators = {
     "-": { associativity: "left", precedence: 2, function: (a, b) => { return a - b; } },
 };
 
+function parse(input=[]) {
+    const intRe = /^[0-9]+$/;
+    const floatRe = /^[0-9]*(\.(?![0-9]*\.))?[0-9]$/;
+
+    return input.map((i) => {
+        if (typeof i === "number") {
+            return i;
+        }
+        if (Object.keys(operators).includes(i)) {
+            return i;
+        }
+        if(typeof i === "string" && intRe.test(i)) {
+            return Number.parseInt(i);
+        }
+        if(typeof i === "string" && floatRe.test(i)) {
+            return Number.parseFloat(i);
+        }
+        throw(new Error(`not a valid number ${i}`));
+    });
+}
+
 /**
  * Rewrites the given expression to reverse polish notation, and calculate the result.
  * The input should be am array of valid tokens.
@@ -127,4 +148,4 @@ function rpn(input = []) {
     return stack;
 }
 
-module.exports = { rpn, shuntingYard };
+module.exports = { rpn, shuntingYard, parse };
