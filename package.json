@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "autoprefixer": "^6.5.1",
+    "lodash.flatten": "^4.4.0",
     "pixrem": "^3.0.2",
     "pleeease-filters": "^3.0.0",
     "postcss-calc": "^5.3.1",
