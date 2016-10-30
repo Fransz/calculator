@@ -1,71 +1,86 @@
 "use strict";
 
-var shuntingYard = require("shuntingyard").shuntingYard
+import { shuntingYard, rpn, parse } from "../shuntingyard";
 
 export default function reducer(state = {}, action) {
-    let newInput = input(state.input, action);
-    let newExpr = expression(state.expression, newInput, action);
-    let newValue = value(state.value, newExpr, newInput, action);
+    let newInput = input(state.input, state.lastActionType, action);
+    let newValue = value(state.value, newInput, action);
 
-    if (action.type === "ADD_OPERATOR") {
-        newInput = "0";
-    }
     if (action.type === "CALCULATE") {
-        newInput = "0";
+        newInput = [ newValue ];
     }
-
 
     return {
         input: newInput,
-        expression: newExpr,
-        value: newValue
-    }
-};
+        value: newValue,
+        lastActionType: action.type
+    };
+}
 
-
-function input(inp = "0", action) {
+/**
+ * Return the new input state.
+ * @param inp               previous state.
+ * @param last              previous action.
+ * @param action            current action
+ * @returns {string[""]}    An array with all inputs as string.
+ */
+function input(inp = [""], last="", action) {
     switch(action.type) {
+        case "ADD_OPERATOR":
+        case "ADD_PARENTHESIS":
+            if(last === "") {
+                inp[inp.length - 1] = "0";
+            }
+            inp[inp.length] = action.operator;
+            return inp;
+
         case "ADD_KEY":
-            return (inp === "0" ? "" : inp) + action.key;
+            if(last === "ADD_OPERATOR" || last === "ADD_PARENTHESIS") {
+                inp[inp.length] = action.key;
+            } else {
+                inp[inp.length - 1] = action.key;
+            }
+            return inp;
 
         case "CLEAR_KEYS":
-            return "0";
+            inp[inp.length - 1] = "";
+            return inp;
+
+        case "CALCULATE":
+            return inp;
 
         default:
             return inp;
     }
 }
 
-function expression(expr = [], inp, action) {
+function value(val = "0", inp, action) {
+    function getWhileNumber(ss) {
+        let r = 0;
+        for(let i = 0; i < ss.length; i++) {
+            if(typeof ss[i] === "number") {
+                r = ss[i];
+                continue;
+            }
+            break;
+        }
+        return r.toString();
+    }
+
     switch (action.type) {
         case "ADD_OPERATOR":
-            return shuntingYard(expr.join(' ') + ' ' + inp + ' ' + action.operator);
-        case "CALCULATE":
-            return shuntingYard(expr.join(' ') + ' ' + inp + ' ' + '=');
-        default:
-            return expr;
-    }
-}
+            return getWhileNumber(shuntingYard(parse(inp)));
 
-function value(res = "0", expr, inp, action) {
-    switch(action.type) {
-        case "ADD_OPERATOR":
         case "CALCULATE":
-            let r = 0;
-            for(let i = 0; i < expr.length; i++) {
-                if(typeof expr[i] === "number") {
-                    r = expr[i];
-                    continue;
-                }
-                break;
-            }
-            return r.toString();
+            return getWhileNumber(rpn(shuntingYard(parse(inp))));
+
+        case "CLEAR_KEYS":
+            return inp[inp.length - 1];
 
         case "ADD_KEY":
-        case "CLEAR_KEY":
-            return inp;
+            return inp[inp.length - 1];
 
         default:
-            return res;
+            return val;
     }
 }

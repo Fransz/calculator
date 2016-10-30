@@ -3,7 +3,7 @@ import {Provider} from "react-redux"
 import {createStore} from "redux"
 
 import CalcReduxContainer from './CalcReduxContainer'
-import reducer from "../../reducers/newReducer"
+import reducer from "../../reducers/reducer"
 
 const store = createStore(reducer);
 
