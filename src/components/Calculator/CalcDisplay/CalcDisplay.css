@@ -1,7 +1,7 @@
 .root{
     border: 1px solid green;
-    line-height: 40px;
-    min-height:62px;
+    line-height: 3em;
+    min-height: 3em;
 
     padding-top: 10px;
     padding-bottom:10px;

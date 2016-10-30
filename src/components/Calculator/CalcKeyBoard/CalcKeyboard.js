@@ -26,7 +26,7 @@ class CalcKeyboard extends Component {
         return keys.map((ks) => {
             const reactKey = `react_key_calc_row_${ks.reduce((acc, k) => acc + k, "")}`;
 
-            return <div key={reactKey} className={`${s.calcKeyrow}`}>
+            return <div key={reactKey} className={`${s.keyrow}`}>
                 <div className="row">
                     {
                         ks.map((k) => {

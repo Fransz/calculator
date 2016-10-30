@@ -13,6 +13,7 @@ class CalcContainer extends Component {
         super(props);
     }
 
+    // eslint-disable-next-line no-unused-vars
     static propTypes = {
         title: PropTypes.string.isRequired,
         displayValue: PropTypes.string,
@@ -25,7 +26,7 @@ class CalcContainer extends Component {
         return <div className={s.root}>
             <h1 className="bg-primary">{this.props.title}</h1>
             <div className="row">
-                <div className="col-md-offset-5 col-md-3">
+                <div className="col-md-offset-4 col-md-3">
                     <CalcDisplay value={this.props.displayValue}/>
                     <CalcKeyboard onKey={this.props.onKey}/>
                 </div>
