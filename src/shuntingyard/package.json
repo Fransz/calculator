@@ -1,55 +1,11 @@
 {
-  "_args": [
-    [
-      {
-        "name": "shuntingyard",
-        "raw": "shuntingyard@file:///Users/admin/Documents/workspace/javascript/firststeps/shuntingyard",
-        "rawSpec": "file:///Users/admin/Documents/workspace/javascript/firststeps/shuntingyard",
-        "scope": null,
-        "spec": "/Users/admin/Documents/workspace/javascript/firststeps/shuntingyard",
-        "type": "directory"
-      },
-      "/Users/admin/Documents/workspace/javascript/firststeps/calculator"
-    ]
-  ],
-  "_from": "../shuntingyard",
-  "_id": "shuntingyard@0.0.0",
-  "_inCache": true,
-  "_installable": true,
-  "_location": "/shuntingyard",
-  "_phantomChildren": {},
-  "_requested": {
-    "name": "shuntingyard",
-    "raw": "shuntingyard@file:///Users/admin/Documents/workspace/javascript/firststeps/shuntingyard",
-    "rawSpec": "file:///Users/admin/Documents/workspace/javascript/firststeps/shuntingyard",
-    "scope": null,
-    "spec": "/Users/admin/Documents/workspace/javascript/firststeps/shuntingyard",
-    "type": "directory"
-  },
-  "_requiredBy": [
-    "/"
-  ],
-  "_resolved": "file:../shuntingyard",
-  "_shasum": "aedab4977ed48d486950b572732abf15bc7fcec6",
-  "_shrinkwrap": null,
-  "_spec": "shuntingyard@file:///Users/admin/Documents/workspace/javascript/firststeps/shuntingyard",
-  "_where": "/Users/admin/Documents/workspace/javascript/firststeps/calculator",
-  "author": {
-    "name": "Frans Jaspers"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "mocha": "^3.1.2",
-    "should": "^11.1.1"
-  },
-  "gitHead": "cc84ed7419870c362f66d5a2af4e27f4d0f8aac2",
-  "license": "ISC",
-  "main": "src/index.js",
   "name": "shuntingyard",
-  "optionalDependencies": {},
-  "readme": "ERROR: No README data found!",
+  "version": "0.0.0",
+  "description": "",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "0.0.0"
+  "author": "Frans Jaspers",
+  "license": "ISC"
 }
