@@ -1,68 +1,44 @@
 "use strict";
 
 const operators = {
-    "^": { associativity: "right", precedence: 4, function: (a, b) => { return Math.pow(a, b) } },
-    "*": { associativity: "left", precedence: 3, function: (a, b) => { return a * b } },
-    "/": { associativity: "left", precedence: 3, function: (a, b) => { return a / b } },
-    "+": { associativity: "left", precedence: 2, function: (a, b) => { return a + b } },
-    "-": { associativity: "left", precedence: 2, function: (a, b) => { return a - b } },
+    "^": { associativity: "right", precedence: 4, function: (a, b) => { return Math.pow(a, b); } },
+    "*": { associativity: "left", precedence: 3, function: (a, b) => { return a * b; } },
+    "/": { associativity: "left", precedence: 3, function: (a, b) => { return a / b; } },
+    "+": { associativity: "left", precedence: 2, function: (a, b) => { return a + b; } },
+    "-": { associativity: "left", precedence: 2, function: (a, b) => { return a - b; } },
 };
-
-function tokenize(input) {
-    console.log('tokenizer input: ' + input);
-
-    let tokens = [], ops = ['^', '*', '/', '+', '-', '(', ')', '='];
-    const inp = input.trim().split(/\s+/g);
-
-    console.log('tokenizer inp: ' + inp);
-
-    for (let i = 0; i < inp.length; i++) {
-        if(ops.includes(inp[i])) {
-            tokens.push(inp[i]);
-        } else if(inp[i].match(/\d+/)) {
-            tokens.push(Number(inp[i]));
-        } else {
-            throw new Error(`Found invalid token ${token} in ${input}`);
-        }
-    }
-    console.log('tokenizer result: ' + tokens);
-    return tokens;
-}
 
 /**
  * Rewrites the given expression to reverse polish notation, and calculate the result.
+ * The input should be am array of valid tokens.
  * Upon an unbalanced parenthesis an Error is thrown.
  *
  * @see https://en.wikipedia.org/wiki/Shunting-yard_algorithm
  *
- * @param input the given expression.
+ * @param input the given expression as an array of valid tokens.
  * @returns {Array} the rewritten, and calculated expression as an array.
  */
-function shuntingYard(input = "") {
-    console.log('shuntingyard input: ' + input);
+function shuntingYard(input=[]) {
     if(! input) {
         return [];
     }
 
     let output = [], stack = [];
-    let tokens = tokenize(input);
-
 
     const shouldMove = (t, s) => {
         return operators[t].precedence < operators[s].precedence ||
             operators[t].precedence === operators[s].precedence && operators[t].associativity === "left";
     };
 
-    for(let i = 0; i < tokens.length; i++) {
-        let token = tokens[i];
-        console.log("shunting yard: " + token);
+    for(let i = 0; i < input.length; i++) {
+        let token = input[i];
 
-        if(token === '(') {
+        if(token === "(") {
             stack.unshift(token);
             continue;
         }
 
-        if(token === ')') {
+        if(token === ")") {
             while(stack.length && stack[0] !== "(") {
                 output.push(stack[0]);
                 stack.shift();
@@ -77,7 +53,7 @@ function shuntingYard(input = "") {
         }
 
 
-        if(token === '=') {
+        if(token === "=") {
             while(stack.length) {
                 output.push(stack[0]);
                 stack.shift();
@@ -94,7 +70,7 @@ function shuntingYard(input = "") {
         // Token is an operator, see if we should move from the stack to the queue.
         while(stack.length && stack[0] !== "(" && shouldMove(token, stack[0])) {
             output.push(stack[0]);
-            stack.shift()
+            stack.shift();
             output = rpn(output).reverse();
         }
 
@@ -109,12 +85,11 @@ function shuntingYard(input = "") {
         stack.shift();
     }
 
-    console.log('shuntingyard output: ' + output);
     return output;
 }
 
 /**
- * Calculate the given exoression in reverse polish notation.
+ * Calculate the given expression in reverse polish notation.
  *
  * An Error is thrown if an operator does not have enough operands.
  * If the array has more then one element the expression was partial.
@@ -125,7 +100,6 @@ function shuntingYard(input = "") {
  * @returns {Array}
  */
 function rpn(input = []) {
-    console.log('rpn input: ' + input);
     let stack = [];
 
     while(input.length) {
@@ -150,18 +124,7 @@ function rpn(input = []) {
         }
     }
 
-    console.log('rpn output: ' + stack);
     return stack;
 }
 
-
-function examples () {
-    console.log(shuntingYard("23 + 12 + 5"));
-    console.log(shuntingYard("23 + 12 * 5"));
-    console.log(shuntingYard("23 * 12 + 5"));
-    console.log(shuntingYard("23 + 12 + 5"));
-    console.log(shuntingYard("23 * 12 * 5"));
-    console.log(shuntingYard("3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3"));
-}
-
-module.exports = { rpn, shuntingYard, tokenize };
+module.exports = { rpn, shuntingYard };
