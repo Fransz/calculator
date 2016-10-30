@@ -1,10 +1,13 @@
-"use strict"
+"use strict";
 
-import React, { Component } from 'react';
-import s from './CalcOperatorboard.css';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
+/* eslint-disable no-unused-vars */
+import { Component } from "react";
+import CalcKey from "../CalcKey";
+/* eslint-enable no-unused-vars */
 
-import CalcKey from '../CalcKey'
+import s from "./CalcOperatorboard.css";
+import withStyles from "isomorphic-style-loader/lib/withStyles";
+
 
 class CalcOperatorboard extends Component {
     constructor(props) {
@@ -18,10 +21,10 @@ class CalcOperatorboard extends Component {
             {
                 this.operators.map((o) => {
                     const reactKey = `react-key-operator-${o}`;
-                    return <CalcKey bootstrapCols="col-md-12" onKey={this.props.onOperator} key={reactKey}>{o}</CalcKey>
+                    return <CalcKey bootstrapCols="col-md-12" onKey={this.props.onOperator} key={reactKey}>{o}</CalcKey>;
                 })
             }
-        </div>
+        </div>;
     }
 }
 
