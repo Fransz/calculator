@@ -1,22 +1,25 @@
-import React, { PropTypes } from "react";
-import {Provider} from "react-redux"
-import {createStore} from "redux"
+/* eslint-disable no-unused-vars */
+import {PropTypes} from "react";
+import {Provider} from "react-redux";
+import CalcReduxContainer from "./CalcReduxContainer";
+/* eslint-enable no-unused-vars */
 
-import CalcReduxContainer from './CalcReduxContainer'
-import reducer from "../../reducers/reducer"
+import {createStore} from "redux";
+
+import reducer from "../../reducers/reducer";
 
 const store = createStore(reducer);
 
-function Calculator({ title }) {
-  return (
+function Calculator({title}) {
+    return (
         <Provider store={store}>
-          <CalcReduxContainer title={title} />
+            <CalcReduxContainer title={title} />
         </Provider>
-  );
+    );
 }
 
 Calculator.propTypes = {
-  title: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired
 };
 
 export default Calculator;
