@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 import React, { Component, PropTypes } from 'react'
 import CalcKey from '../CalcKey'
@@ -8,17 +8,11 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 class CalcKeyboard extends Component {
     constructor(props) {
         super(props);
-
-        this.handleKey = this.handleKey.bind(this);
     }
 
     static propTypes = {
         onKey: PropTypes.func.isRequired
-    }
-
-    handleKey(key) {
-        this.props.onKey(key);
-    }
+    };
 
     renderKeys() {
         const keys = [ ["7", "8", "9"], ["4", "5", "6"], ["1", "2", "3"], ["0", ".", "ce"] ];
@@ -32,7 +26,7 @@ class CalcKeyboard extends Component {
                         ks.map((k) => {
                             const reactKey = `react_key_calc_${k}`;
 
-                            return <CalcKey bootstrapCols="col-md-4" onKey={this.handleKey} key={reactKey}>{k}</CalcKey>
+                            return <CalcKey bootstrapCols="col-md-4" onKey={this.props.onKey} key={reactKey}>{k}</CalcKey>
                         })
                     }
                 </div>
