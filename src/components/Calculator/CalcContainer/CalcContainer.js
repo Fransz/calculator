@@ -1,25 +1,19 @@
 "use strict";
 
-import React, { Component, PropTypes } from 'react'
+import { Component, PropTypes } from "react";
 
-import CalcDisplay from '../CalcDisplay'
-import CalcKeyboard from '../CalcKeyboard'
-import CalcOperatorboard from '../CalcOperatorboard'
-import s from './CalcContainer.css';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
+/* eslint-disable no-unused-vars */
+import CalcDisplay from "../CalcDisplay";
+import CalcKeyboard from "../CalcKeyboard";
+import CalcOperatorboard from "../CalcOperatorboard";
+/* eslint-enable no-unused-vars */
+
+import s from "./CalcContainer.css";
+import withStyles from "isomorphic-style-loader/lib/withStyles";
 
 class CalcContainer extends Component {
     constructor(props) {
         super(props);
-    }
-
-    // eslint-disable-next-line no-unused-vars
-    static propTypes = {
-        title: PropTypes.string.isRequired,
-        displayValue: PropTypes.string,
-
-        onKey: PropTypes.func.isRequired,
-        onOperator: PropTypes.func.isRequired,
     }
 
     render() {
@@ -34,8 +28,17 @@ class CalcContainer extends Component {
                     <CalcOperatorboard onOperator={this.props.onOperator}/>
                 </div>
             </div>
-        </div>
+        </div>;
     }
 }
+
+CalcContainer.PropTypes = {
+    title: PropTypes.string.isRequired,
+    displayValue: PropTypes.string,
+
+    onKey: PropTypes.func.isRequired,
+    onOperator: PropTypes.func.isRequired,
+};
+
 
 export default withStyles(s)(CalcContainer);

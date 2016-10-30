@@ -1,18 +1,17 @@
 "use strict";
 
-import React, { Component, PropTypes } from 'react'
-import CalcKey from '../CalcKey'
-import s from './calcKeyboard.css';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
+/* eslint-disable no-unused-vars */
+import CalcKey from "../CalcKey";
+/* eslint-enable no-unused-vars */
+
+import { Component, PropTypes } from "react";
+import s from "./calcKeyboard.css";
+import withStyles from "isomorphic-style-loader/lib/withStyles";
 
 class CalcKeyboard extends Component {
     constructor(props) {
         super(props);
     }
-
-    static propTypes = {
-        onKey: PropTypes.func.isRequired
-    };
 
     renderKeys() {
         const keys = [ ["7", "8", "9"], ["4", "5", "6"], ["1", "2", "3"], ["0", ".", "ce"] ];
@@ -26,19 +25,23 @@ class CalcKeyboard extends Component {
                         ks.map((k) => {
                             const reactKey = `react_key_calc_${k}`;
 
-                            return <CalcKey bootstrapCols="col-md-4" onKey={this.props.onKey} key={reactKey}>{k}</CalcKey>
+                            return <CalcKey bootstrapCols="col-md-4" onKey={this.props.onKey} key={reactKey}>{k}</CalcKey>;
                         })
                     }
                 </div>
-            </div>
-        })
+            </div>;
+        });
     }
 
     render() {
         return <div className={s.root}>
             {this.renderKeys()}
-        </div>
+        </div>;
     }
 }
+
+CalcKeyboard.propTypes = {
+    onKey: PropTypes.func.isRequired
+};
 
 export default withStyles(s)(CalcKeyboard);

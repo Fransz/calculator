@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 import { connect } from "react-redux";
 
@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch) => {
                 dispatch(addOperator(operator));
             }
         }
-    }
+    };
 };
 
 
