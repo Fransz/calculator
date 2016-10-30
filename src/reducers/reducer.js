@@ -38,7 +38,7 @@ function input(inp = [""], last="", action) {
             if(last === "ADD_OPERATOR" || last === "ADD_PARENTHESIS") {
                 inp[inp.length] = action.key;
             } else {
-                inp[inp.length - 1] = action.key;
+                inp[inp.length - 1] += action.key;
             }
             return inp;
 
