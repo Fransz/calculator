@@ -20,7 +20,7 @@ class CalcContainer extends Component {
 
         this.timeoutId = 0;
         this.keyboardKeys = [ ["7", "8", "9"], ["4", "5", "6"], ["1", "2", "3"], ["0", ".", "ce"] ];
-        this.operatorKeys = [ ["c", "="], ["/", "("], ["*", ")"], ["+", "#"], ["-", "%"] ];
+        this.operatorKeys = [ ["c", "="], ["/", "("], ["*", ")"], ["+", "±"], ["-", "%"] ];
 
         this.handleKeyUp = this.handleKeyUp.bind(this);
     }
