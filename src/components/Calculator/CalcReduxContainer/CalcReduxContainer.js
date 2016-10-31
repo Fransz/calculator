@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onKey: (key) => {
+        keyHandler: (key) => {
             if(key === "ce") {
                 dispatch(clearKeys());
             } else {
@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => {
             }
         },
 
-        onOperator: (operator) => {
+        opHandler: (operator) => {
             if(operator === "=") {
                 dispatch(calculate());
             } else {
