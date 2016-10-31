@@ -70,14 +70,14 @@ describe("shuntingYard", function() {
         rpn.shuntingYard().should.be.empty();
     });
 
-    it("should throw an error upon unbalanced parenthesis", function() {
-        should.throws(() => rpn.shuntingYard(["("]));
+    it("should throw an error upon unbalanced parenthesis, when finding a closing parenthesis", function() {
+        should.doesNotThrow(() => rpn.shuntingYard(["("]));
         should.throws(() => rpn.shuntingYard([")"]));
-        should.throws(() => rpn.shuntingYard([12, "("]));
+        should.doesNotThrow(() => rpn.shuntingYard([12, "("]));
         should.throws(() => rpn.shuntingYard([12, ")"]));
 
+        should.doesNotThrow(() => rpn.shuntingYard(["(", "(", ")", 12]));
         should.throws(() => rpn.shuntingYard(["(", ")", ")", 12]));
-        should.throws(() => rpn.shuntingYard(["(", "(", ")", 12]));
 
         should.doesNotThrow(() => rpn.shuntingYard(["(", ")"]));
         should.doesNotThrow(() => rpn.shuntingYard(["(", "(", ")", ")"]));

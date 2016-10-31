@@ -99,9 +99,6 @@ function shuntingYard(input=[]) {
     }
 
     while(stack.length) {
-        if(stack[0] === "(") {
-            throw new Error(`Unbalanced parenthesis in ${input}`);
-        }
         output.push(stack[0]);
         stack.shift();
     }
