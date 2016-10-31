@@ -16,7 +16,7 @@ class CalcContainer extends Component {
         super(props);
 
         this.keyboardKeys = [ ["7", "8", "9"], ["4", "5", "6"], ["1", "2", "3"], ["0", ".", "ce"] ];
-        this.operatorKeys = [ ["=", "+", "-", "*", "/"] ];
+        this.operatorKeys = [ ["c", "="], ["/", "("], ["*", ")"], ["+", "#"], ["-", "%"] ];
 
         this.handleKeyUp = this.handleKeyUp.bind(this);
     }
@@ -40,10 +40,10 @@ class CalcContainer extends Component {
             <div className="row">
                 <div className="col-md-offset-4 col-md-3">
                     <CalcDisplay value={this.props.displayValue}/>
-                    <CalcKeyboard onKey={this.props.onKey}/>
+                    <CalcKeyboard keys={this.keyboardKeys} onKey={this.props.onKey}/>
                 </div>
-                <div className="col-md-1">
-                    <CalcOperatorboard onOperator={this.props.onOperator}/>
+                <div className="col-md-2">
+                    <CalcOperatorboard keys={this.operatorKeys} onOperator={this.props.onOperator}/>
                 </div>
             </div>
         </div>;
