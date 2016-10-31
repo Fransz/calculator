@@ -70,7 +70,7 @@ describe("shuntingYard", function() {
         rpn.shuntingYard().should.be.empty();
     });
 
-    it("should throw an error upon unbalanced parenthesis, when finding a closing parenthesis", function() {
+    it("should throw an error upon unbalanced parentheses, when finding a closing parentheses", function() {
         should.doesNotThrow(() => rpn.shuntingYard(["("]));
         should.throws(() => rpn.shuntingYard([")"]));
         should.doesNotThrow(() => rpn.shuntingYard([12, "("]));

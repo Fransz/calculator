@@ -32,7 +32,7 @@ function parse(input=[]) {
 /**
  * Rewrites the given expression to reverse polish notation, and calculate the result.
  * The input should be am array of valid tokens.
- * Upon an unbalanced parenthesis an Error is thrown.
+ * Upon an unbalanced parentheses an Error is thrown.
  *
  * @see https://en.wikipedia.org/wiki/Shunting-yard_algorithm
  *
@@ -67,7 +67,7 @@ function shuntingYard(input=[]) {
             output = rpn(output).reverse();
 
             if(stack[0] !== "(") {
-                throw new Error(`Unbalanced parenthesis in ${input}`);
+                throw new Error(`Unbalanced parentheses in ${input}`);
             }
             stack.shift();
             continue;

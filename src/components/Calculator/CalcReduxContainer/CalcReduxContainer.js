@@ -3,7 +3,7 @@
 import { connect } from "react-redux";
 
 import CalcContainer from "../CalcContainer";
-import {addKey, addOperator, calculate, clearKeys} from "../../../actions";
+import {addKey, addOperator, addParentheses, calculate, clearKeys} from "../../../actions";
 
 const mapStateToProps = (state) => {
     return {
@@ -22,10 +22,17 @@ const mapDispatchToProps = (dispatch) => {
         },
 
         opHandler: (operator) => {
-            if(operator === "=") {
-                dispatch(calculate());
-            } else {
-                dispatch(addOperator(operator));
+            switch(operator) {
+                case "=":
+                    dispatch(calculate());
+                    break;
+                case "(":
+                case ")":
+                    dispatch(addParentheses(operator));
+                    break;
+                default:
+                    dispatch(addOperator(operator));
+                    break;
             }
         }
     };

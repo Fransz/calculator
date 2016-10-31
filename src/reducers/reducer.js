@@ -27,7 +27,7 @@ export default function reducer(state = {}, action) {
 function input(inp = [""], last="", action) {
     switch(action.type) {
         case "ADD_OPERATOR":
-        case "ADD_PARENTHESIS":
+        case "ADD_PARENTHESES":
             if(last === "") {
                 inp[inp.length - 1] = "0";
             }
@@ -35,15 +35,18 @@ function input(inp = [""], last="", action) {
             return inp;
 
         case "ADD_KEY":
-            if(last === "ADD_OPERATOR" || last === "ADD_PARENTHESIS") {
+            if(last === "ADD_OPERATOR" || last === "ADD_PARENTHESES") {
                 inp[inp.length] = action.key;
-            } else {
+            } else if (last === "CALCULATE") {
+                inp = [ action.key ];
+            }
+            else {
                 inp[inp.length - 1] += action.key;
             }
             return inp;
 
         case "CLEAR_KEYS":
-            inp[inp.length - 1] = "";
+            inp[inp.length - 1] = "0";
             return inp;
 
         case "CALCULATE":
@@ -69,6 +72,7 @@ function value(val = "0", inp, action) {
 
     switch (action.type) {
         case "ADD_OPERATOR":
+        case "ADD_PARENTHESES":
             return getWhileNumber(shuntingYard(parse(inp)));
 
         case "CALCULATE":

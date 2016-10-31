@@ -20,6 +20,13 @@ export const addOperator = (operator) => {
     };
 };
 
+export const addParentheses = (operator) => {
+    return {
+        type: "ADD_PARENTHESES",
+        operator
+    };
+};
+
 export const calculate = () => {
     return {
         type: "CALCULATE"
