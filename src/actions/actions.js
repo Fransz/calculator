@@ -7,6 +7,12 @@ export const addKey = (key) => {
     };
 };
 
+export const clearAll = () => {
+    return {
+        type: "CLEAR_ALL"
+    };
+};
+
 export const clearKeys = () => {
     return {
         type: "CLEAR_KEYS"

@@ -3,7 +3,7 @@
 import { connect } from "react-redux";
 
 import CalcContainer from "../CalcContainer";
-import {addKey, addOperator, addParentheses, calculate, clearKeys} from "../../../actions";
+import {addKey, addOperator, addParentheses, calculate, clearKeys, clearAll} from "../../../actions";
 
 const mapStateToProps = (state) => {
     return {
@@ -14,10 +14,13 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         keyHandler: (key) => {
-            if(key === "ce") {
-                dispatch(clearKeys());
-            } else {
-                dispatch(addKey(key));
+            switch(key) {
+                case "ce":
+                    dispatch(clearKeys());
+                    break;
+                default:
+                    dispatch(addKey(key));
+                    break;
             }
         },
 
@@ -29,6 +32,9 @@ const mapDispatchToProps = (dispatch) => {
                 case "(":
                 case ")":
                     dispatch(addParentheses(operator));
+                    break;
+                case "c":
+                    dispatch(clearAll());
                     break;
                 default:
                     dispatch(addOperator(operator));

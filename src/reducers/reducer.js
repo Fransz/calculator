@@ -49,6 +49,9 @@ function input(inp = [""], last="", action) {
             inp[inp.length - 1] = "0";
             return inp;
 
+        case "CLEAR_ALL":
+            return [ "0" ];
+
         case "CALCULATE":
             return inp;
 
@@ -79,8 +82,7 @@ function value(val = "0", inp, action) {
             return getWhileNumber(rpn(shuntingYard(parse(inp))));
 
         case "CLEAR_KEYS":
-            return inp[inp.length - 1];
-
+        case "CLEAR_ALL":
         case "ADD_KEY":
             return inp[inp.length - 1];
 
