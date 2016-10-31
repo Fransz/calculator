@@ -1,11 +1,10 @@
 .root{
-    border: 1px solid green;
+    border-bottom: 2px solid gray;
     line-height: 3em;
-    min-height: 3em;
 
-    padding-top: 10px;
-    padding-bottom:10px;
     padding-right: 1em;
 
     text-align: right;
+
+    font-size:1.5em;
 }

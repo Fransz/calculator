@@ -1,15 +1,18 @@
 .root {
-   line-height: 40px;
+    line-height: 40px;
 }
 
 .calckey {
-   font-weight: bold;
-   border: 2px solid black;
-   margin-top:10px;
-   margin-bottom:10px;
-   text-align: center;
-}
+    font-weight: bold;
+    border: 2px solid black;
+    border-radius: 7px;
+    margin-top:10px;
+    margin-bottom:10px;
+    text-align: center;
+    background-color: slategray;
+    }
 
 .highlight {
-   border: 2px solid red;
+    background-color: beige;
 }
+

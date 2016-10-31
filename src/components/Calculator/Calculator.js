@@ -10,16 +10,12 @@ import reducer from "../../reducers/reducer";
 
 const store = createStore(reducer);
 
-function Calculator({title}) {
+function Calculator() {
     return (
         <Provider store={store}>
-            <CalcReduxContainer title={title} />
+            <CalcReduxContainer />
         </Provider>
     );
 }
-
-Calculator.propTypes = {
-    title: PropTypes.string.isRequired
-};
 
 export default Calculator;

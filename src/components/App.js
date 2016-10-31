@@ -24,7 +24,7 @@ const ContextType = {
  */
 class App extends React.Component {
 
-    // eslint-disable-nex-line no-unused-methods
+    // eslint-disable-nex-line no-unused-vars
     getChildContext() {
         return this.props.context;
     }

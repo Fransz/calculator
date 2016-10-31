@@ -43,15 +43,18 @@ class CalcContainer extends Component {
     }
 
     render() {
-        return <div tabIndex="1" ref={(e) => this.calcContainer = e} onKeyUp={e => this.handleKeyUp(e)} className={s.root}>
-            <h1 className="bg-primary">{this.props.title}</h1>
+        return <div tabIndex="1" ref={(e) => this.calcContainer = e} onKeyUp={e => this.handleKeyUp(e)}>
             <div className="row">
-                <div className="col-md-offset-4 col-md-3">
-                    <CalcDisplay value={this.props.displayValue}/>
-                    <CalcKeyboard keys={this.keyboardKeys} keyHandler={this.props.keyHandler} highlight={this.state.highlight} />
-                </div>
-                <div className="col-md-2">
-                    <CalcOperatorboard keys={this.operatorKeys} opHandler={this.props.opHandler} />
+                <div className={`col-md-offset-3 col-md-5 ${s.root}`}>
+                    <div className="row">
+                        <div className="col-md-7">
+                            <CalcDisplay value={this.props.displayValue}/>
+                            <CalcKeyboard keys={this.keyboardKeys} keyHandler={this.props.keyHandler} highlight={this.state.highlight} />
+                        </div>
+                        <div className="col-md-5">
+                            <CalcOperatorboard keys={this.operatorKeys} opHandler={this.props.opHandler} />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>;
@@ -59,7 +62,6 @@ class CalcContainer extends Component {
 }
 
 CalcContainer.PropTypes = {
-    title: PropTypes.string.isRequired,
     displayValue: PropTypes.string,
 
     keyHandler: PropTypes.func.isRequired,

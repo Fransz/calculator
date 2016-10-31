@@ -12,4 +12,4 @@ const context = {
     }
 };
 
-ReactDOM.render(<App context={context}><Calculator title="calculator" /></App>, document.querySelectorAll("#root")[0]);
+ReactDOM.render(<App context={context}><Calculator /></App>, document.querySelectorAll("#root")[0]);
