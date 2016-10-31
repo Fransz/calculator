@@ -14,6 +14,10 @@ class CalcOperatorboard extends Component {
         super(props);
     }
 
+    shouldComponentUpdate() {
+        return false;
+    }
+
     renderOperators() {
         const operators = this.props.keys;
 

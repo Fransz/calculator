@@ -12,7 +12,7 @@ class CalcKey extends Component {
     render () {
         const key = this.props.children;
         return <div className={`calckeywrapper ${this.props.bootstrapCols}`}>
-            <div className={s.calckey}
+            <div className={`${s.calckey} ${this.props.highlight ? s.highlight : ""}`}
                  onClick={() => this.props.opHandler ? this.props.opHandler(key): this.props.keyHandler(key)}>
                 {key}
             </div>

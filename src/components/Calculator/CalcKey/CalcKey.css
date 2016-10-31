@@ -4,8 +4,12 @@
 
 .calckey {
    font-weight: bold;
-   border: 1px solid black;
+   border: 2px solid black;
    margin-top:10px;
    margin-bottom:10px;
    text-align: center;
+}
+
+.highlight {
+   border: 2px solid red;
 }

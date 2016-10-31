@@ -13,6 +13,13 @@ class CalcKeyboard extends Component {
         super(props);
     }
 
+    shouldComponentUpdate(nextProps) {
+        if(nextProps.highlight != this.props.highlight) {
+            return true;
+        }
+        return false;
+    }
+
     renderKeys() {
         const keys = this.props.keys;
 
@@ -25,7 +32,9 @@ class CalcKeyboard extends Component {
                         ks.map((k) => {
                             const reactKey = `react_key_calc_${k}`;
 
-                            return <CalcKey bootstrapCols="col-md-4" keyHandler={this.props.keyHandler} key={reactKey}>{k}</CalcKey>;
+                            return <CalcKey keyHandler={this.props.keyHandler} key={reactKey}
+                                 highlight={this.props.highlight === k} bootstrapCols="col-md-4">{k}
+                            </CalcKey>;
                         })
                     }
                 </div>
@@ -42,7 +51,8 @@ class CalcKeyboard extends Component {
 
 CalcKeyboard.propTypes = {
     keyHandler: PropTypes.func.isRequired,
-    keys: PropTypes.array.isRequired
+    keys: PropTypes.array.isRequired,
+    highlight: PropTypes.string
 };
 
 export default withStyles(s)(CalcKeyboard);

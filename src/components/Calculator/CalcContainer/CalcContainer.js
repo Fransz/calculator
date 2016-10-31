@@ -1,5 +1,6 @@
 "use strict";
 
+/* global setTimeout, clearTimeout */
 /* eslint-disable no-unused-vars */
 import React, { Component, PropTypes } from "react";
 import CalcDisplay from "../CalcDisplay";
@@ -15,6 +16,9 @@ class CalcContainer extends Component {
     constructor(props) {
         super(props);
 
+        this.state = { highlight: "" };
+
+        this.timeoutId = 0;
         this.keyboardKeys = [ ["7", "8", "9"], ["4", "5", "6"], ["1", "2", "3"], ["0", ".", "ce"] ];
         this.operatorKeys = [ ["c", "="], ["/", "("], ["*", ")"], ["+", "#"], ["-", "%"] ];
 
@@ -27,6 +31,10 @@ class CalcContainer extends Component {
         }
         if(flatten(this.keyboardKeys).includes(e.key)) {
             this.props.keyHandler(e.key);
+
+            this.setState({highlight: e.key});
+            clearTimeout(this.timeoutId);
+            this.timeoutId = setTimeout(() => { this.setState({highlight: ""}); }, 300);
         }
     }
 
@@ -40,10 +48,10 @@ class CalcContainer extends Component {
             <div className="row">
                 <div className="col-md-offset-4 col-md-3">
                     <CalcDisplay value={this.props.displayValue}/>
-                    <CalcKeyboard keys={this.keyboardKeys} keyHandler={this.props.keyHandler}/>
+                    <CalcKeyboard keys={this.keyboardKeys} keyHandler={this.props.keyHandler} highlight={this.state.highlight} />
                 </div>
                 <div className="col-md-2">
-                    <CalcOperatorboard keys={this.operatorKeys} opHandler={this.props.opHandler}/>
+                    <CalcOperatorboard keys={this.operatorKeys} opHandler={this.props.opHandler} />
                 </div>
             </div>
         </div>;
