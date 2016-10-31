@@ -1,7 +1,7 @@
 "use strict";
 
 /* eslint-disable no-unused-vars */
-import { Component } from "react";
+import { Component, PropTypes } from "react";
 import CalcKey from "../CalcKey";
 /* eslint-enable no-unused-vars */
 
@@ -25,7 +25,7 @@ class CalcOperatorboard extends Component {
                     os.map((o) => {
                         const reactKey = `react_key_operator_${o}`;
 
-                        return <CalcKey bootstrapCols="col-md-6" onKey={this.props.onOperator} key={reactKey}>{o}</CalcKey>;
+                        return <CalcKey bootstrapCols="col-md-6" opHandler={this.props.opHandler} key={reactKey}>{o}</CalcKey>;
                     })
                 }
             </div>;
@@ -38,5 +38,10 @@ class CalcOperatorboard extends Component {
         </div>;
     }
 }
+
+CalcOperatorboard.propTypes = {
+    opHandler: PropTypes.func.isRequired,
+    keys: PropTypes.array.isRequired
+};
 
 export default withStyles(s)(CalcOperatorboard);

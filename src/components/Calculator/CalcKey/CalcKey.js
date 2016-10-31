@@ -7,18 +7,13 @@ import withStyles from "isomorphic-style-loader/lib/withStyles";
 class CalcKey extends Component {
     constructor(props) {
         super(props);
-
-        this.onClick = this.onClick.bind(this);
-    }
-
-    onClick(key) {
-        this.props.onKey(key);
     }
 
     render () {
         const key = this.props.children;
         return <div className={`calckeywrapper ${this.props.bootstrapCols}`}>
-            <div className={s.calckey} onClick={() => this.onClick(key)}>
+            <div className={s.calckey}
+                 onClick={() => this.props.opHandler ? this.props.opHandler(key): this.props.keyHandler(key)}>
                 {key}
             </div>
         </div>;
@@ -26,7 +21,8 @@ class CalcKey extends Component {
 }
 
 CalcKey.propTypes = {
-    onKey: PropTypes.func.isRequired
+    keyHandler: PropTypes.func,
+    opHandler: PropTypes.func
 };
 
 export default withStyles(s)(CalcKey);

@@ -23,10 +23,10 @@ class CalcContainer extends Component {
 
     handleKeyUp(e) {
         if(flatten(this.operatorKeys).includes(e.key)) {
-            this.props.onOperator(e.key);
+            this.props.opHandler(e.key);
         }
         if(flatten(this.keyboardKeys).includes(e.key)) {
-            this.props.onKey(e.key);
+            this.props.keyHandler(e.key);
         }
     }
 
@@ -40,10 +40,10 @@ class CalcContainer extends Component {
             <div className="row">
                 <div className="col-md-offset-4 col-md-3">
                     <CalcDisplay value={this.props.displayValue}/>
-                    <CalcKeyboard keys={this.keyboardKeys} onKey={this.props.onKey}/>
+                    <CalcKeyboard keys={this.keyboardKeys} keyHandler={this.props.keyHandler}/>
                 </div>
                 <div className="col-md-2">
-                    <CalcOperatorboard keys={this.operatorKeys} onOperator={this.props.onOperator}/>
+                    <CalcOperatorboard keys={this.operatorKeys} opHandler={this.props.opHandler}/>
                 </div>
             </div>
         </div>;
@@ -54,8 +54,8 @@ CalcContainer.PropTypes = {
     title: PropTypes.string.isRequired,
     displayValue: PropTypes.string,
 
-    onKey: PropTypes.func.isRequired,
-    onOperator: PropTypes.func.isRequired,
+    keyHandler: PropTypes.func.isRequired,
+    opHandler: PropTypes.func.isRequired,
 };
 
 

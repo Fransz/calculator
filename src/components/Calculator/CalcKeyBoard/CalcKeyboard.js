@@ -25,7 +25,7 @@ class CalcKeyboard extends Component {
                         ks.map((k) => {
                             const reactKey = `react_key_calc_${k}`;
 
-                            return <CalcKey bootstrapCols="col-md-4" onKey={this.props.onKey} key={reactKey}>{k}</CalcKey>;
+                            return <CalcKey bootstrapCols="col-md-4" keyHandler={this.props.keyHandler} key={reactKey}>{k}</CalcKey>;
                         })
                     }
                 </div>
@@ -41,8 +41,8 @@ class CalcKeyboard extends Component {
 }
 
 CalcKeyboard.propTypes = {
-    onKey: PropTypes.func.isRequired,
-    keys: PropTypes.array
+    keyHandler: PropTypes.func.isRequired,
+    keys: PropTypes.array.isRequired
 };
 
 export default withStyles(s)(CalcKeyboard);
