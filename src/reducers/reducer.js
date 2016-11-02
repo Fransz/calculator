@@ -36,9 +36,9 @@ function input(inp = [""], last="", action) {
 
         case "ADD_KEY":
             if(last === "ADD_OPERATOR" || last === "ADD_PARENTHESES") {
-                inp[inp.length] = action.key;
+                inp[inp.length] = (action.key === "." ? "0" : "") + action.key;
             } else if (last === "CALCULATE") {
-                inp = [ action.key ];
+                inp = [ (action.key === "." ? "0" : "") + action.key ];
             }
             else {
                 inp[inp.length - 1] += action.key;
