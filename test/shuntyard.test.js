@@ -114,6 +114,13 @@ describe("shuntingYard", function() {
             rpn.shuntingYard([30, "%", 5]).should.be.eql([30, 5, "%"]);
         });
 
+        it("should be correct using change sign", function () {
+            // Unary operators are handled directly
+            rpn.shuntingYard([5, "±"]).should.be.eql([-5]);
+            rpn.shuntingYard([5, "±", "±"]).should.be.eql([5]);
+            rpn.shuntingYard([0, "±"]).should.be.eql([0]);
+        });
+
         it("should be correct on a more complex calculation", function() {
             rpn.shuntingYard([5, "+", "(", 1, "+", 2, ")", "*", 4, "-", 3]).should.be.eql([17, 3, "-"]);
             rpn.shuntingYard([3, "+", 4, "*", 2, "/", "(", 1, "-", 5, ")", "^", 2, "^", 3]).should.be.eql([3, 8, -4, 2, 3, "^", "^", "/", "+"]);
@@ -165,6 +172,13 @@ describe("rpn", function() {
             // todo
             // rpn.rpn([30, 0, "%"]).should.throw
         });
+
+        it("should be correct using change sign", function () {
+            rpn.rpn([5, "±"]).should.be.eql([-5]);
+            rpn.rpn([-5, "±"]).should.be.eql([5]);
+            rpn.rpn([5, "±", "±"]).should.be.eql([5]);
+            rpn.rpn([0, "±"]).should.be.eql([0]);
+        })
 
         it("should be correct on a more complex calculation", function() {
             rpn.rpn([5, 1, 2, "+", 4, "*", "+", 3, "-"]).should.be.eql([14]);

@@ -2,6 +2,7 @@
 "use strict";
 
 const operators = {
+    "±": { associativity: "right", precedence: 5, function: (a) => { return -a; } },
     "^": { associativity: "right", precedence: 4, function: (a, b) => { return Math.pow(a, b); } },
     "*": { associativity: "left", precedence: 3, function: (a, b) => { return a * b; } },
     "/": { associativity: "left", precedence: 3, function: (a, b) => { return a / b; } },
@@ -11,8 +12,8 @@ const operators = {
 };
 
 function parse(input=[]) {
-    const intRe = /^[0-9]+$/;
-    const floatRe = /^[0-9]+(\.(?![0-9]*\.))?[0-9]*$/;
+    const intRe = /^(-)?[0-9]+$/;
+    const floatRe = /^(-)?[0-9]+(\.(?![0-9]*\.))?[0-9]*$/;
 
     return input.map((i) => {
         if (typeof i === "number") {
@@ -97,7 +98,15 @@ function shuntingYard(input=[]) {
             output = rpn(output).reverse();
         }
 
+        // Push the current operator onto the stack.
         stack.unshift(token);
+
+        // Unary operators should be handled directly.
+        if(typeof operators[stack[0]] !== "undefined" && operators[stack[0]].function.length === 1) {
+            output.push(stack[0]);
+            stack.shift();
+            output = rpn(output).reverse();
+        }
     }
 
     while(stack.length) {
