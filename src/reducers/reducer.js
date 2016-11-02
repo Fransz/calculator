@@ -1,6 +1,7 @@
 "use strict";
 
 import { shuntingYard, rpn, parse } from "../shuntingyard";
+import findIndex from "lodash.findIndex";
 
 export default function reducer(state = {}, action) {
     let newInput = input(state.input, state.lastActionType, action);
@@ -61,16 +62,12 @@ function input(inp = [""], last="", action) {
 }
 
 function value(val = "0", inp, action) {
-    function getWhileNumber(ss) {
-        let r = 0;
-        for(let i = 0; i < ss.length; i++) {
-            if(typeof ss[i] === "number") {
-                r = ss[i];
-                continue;
-            }
-            break;
+    // Return the last number while all previous elements where also a number from an array, or 0.
+    function getWhileNumber(xs, x=0) {
+        if(xs.length === 0 || typeof xs[0] !== "number") {
+            return x.toString();
         }
-        return r.toString();
+        return getWhileNumber(xs.slice(1), xs[0]);
     }
 
     switch (action.type) {
