@@ -48,9 +48,9 @@ function input(inp = [""], last="", action) {
             return inp;
 
         case "ADD_KEY":
-            if(last === "ADD_OPERATOR" || last === "ADD_PARENTHESES" || last === "@@redux/INIT") {
+            if(last === "ADD_OPERATOR" || last === "ADD_PARENTHESES") {
                 inp[inp.length] = (action.key === "." ? "0" : "") + action.key;
-            } else if (last === "CALCULATE") {
+            } else if (last === "CALCULATE" || last === "@@redux/INIT") {
                 inp = [ (action.key === "." ? "0" : "") + action.key ];
             }
             else {
