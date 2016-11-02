@@ -43,6 +43,14 @@ function input(inp = [""], last="", action) {
             else {
                 inp[inp.length - 1] += action.key;
             }
+
+            // strip multiple dots from the current input.
+            let lastKey = inp[inp.length - 1];
+            const ind = lastKey.indexOf(".");
+            if(ind > -1) {
+                lastKey = lastKey.slice(0, ind + 1) + lastKey.slice(ind).replace(/\./g, "");
+            }
+            inp[inp.length - 1] = lastKey;
             return inp;
 
         case "CLEAR_KEYS":
