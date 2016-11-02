@@ -1,7 +1,6 @@
 "use strict";
 
 import { shuntingYard, rpn, parse } from "../shuntingyard";
-import findIndex from "lodash.findIndex";
 
 export default function reducer(state = {}, action) {
     let newInput = input(state.input, state.lastActionType, action);
