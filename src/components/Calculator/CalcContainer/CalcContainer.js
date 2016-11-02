@@ -25,9 +25,16 @@ class CalcContainer extends Component {
         this.handleKeyUp = this.handleKeyUp.bind(this);
     }
 
+    /**
+     * Handler for the dom keyUp event.
+     * We call the correct dispatcher for the received key.
+     *
+     * @param e the react synthetic event.
+     */
     handleKeyUp(e) {
         if(flatten(this.operatorKeys).includes(e.key)) {
-            this.props.opHandler(e.key);
+            let key = e.key;
+            this.props.opHandler(key);
         }
         if(flatten(this.keyboardKeys).includes(e.key)) {
             this.props.keyHandler(e.key);
