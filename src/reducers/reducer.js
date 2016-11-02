@@ -25,6 +25,19 @@ export default function reducer(state = {}, action) {
  * @returns {string[""]}    An array with all inputs as string.
  */
 function input(inp = [""], last="", action) {
+    /**
+     * Helper function for making sure we do not append a '.' if we already have one in our last input.
+     *
+     * @param cs The input string.
+     * @param foundDot Did we find a dot
+     * @returns {String} The original string with all but the first '.' removed.
+     */
+    function oneDot(cs, foundDot=false) {
+        if(cs.length === 0) return "";
+        const nextChar = (cs[0] === "." && foundDot) ? "" : cs[0];
+        return nextChar + oneDot(cs.slice(1), foundDot || cs[0] === ".");
+    }
+
     switch(action.type) {
         case "ADD_OPERATOR":
         case "ADD_PARENTHESES":
@@ -35,7 +48,7 @@ function input(inp = [""], last="", action) {
             return inp;
 
         case "ADD_KEY":
-            if(last === "ADD_OPERATOR" || last === "ADD_PARENTHESES") {
+            if(last === "ADD_OPERATOR" || last === "ADD_PARENTHESES" || last === "@@redux/INIT") {
                 inp[inp.length] = (action.key === "." ? "0" : "") + action.key;
             } else if (last === "CALCULATE") {
                 inp = [ (action.key === "." ? "0" : "") + action.key ];
@@ -45,12 +58,8 @@ function input(inp = [""], last="", action) {
             }
 
             // strip multiple dots from the current input.
-            let lastKey = inp[inp.length - 1];
-            const ind = lastKey.indexOf(".");
-            if(ind > -1) {
-                lastKey = lastKey.slice(0, ind + 1) + lastKey.slice(ind).replace(/\./g, "");
-            }
-            inp[inp.length - 1] = lastKey;
+            inp[inp.length - 1] = oneDot(inp[inp.length - 1]);
+
             return inp;
 
         case "CLEAR_KEYS":
