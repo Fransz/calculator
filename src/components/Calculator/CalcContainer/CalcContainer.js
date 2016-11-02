@@ -32,17 +32,19 @@ class CalcContainer extends Component {
      * @param e the react synthetic event.
      */
     handleKeyUp(e) {
-        if(flatten(this.operatorKeys).includes(e.key)) {
-            let key = e.key;
+        let key = e.key === "Enter" ? "=" : e.key;
+
+        if(flatten(this.operatorKeys).includes(key)) {
             this.props.opHandler(key);
         }
-        if(flatten(this.keyboardKeys).includes(e.key)) {
-            this.props.keyHandler(e.key);
-
-            this.setState({highlight: e.key});
-            clearTimeout(this.timeoutId);
-            this.timeoutId = setTimeout(() => { this.setState({highlight: ""}); }, 300);
+        if(flatten(this.keyboardKeys).includes(key)) {
+            this.props.keyHandler(key);
         }
+
+        // Make the key on the screen highlight;
+        this.setState({highlight: key});
+        clearTimeout(this.timeoutId);
+        this.timeoutId = setTimeout(() => { this.setState({highlight: ""}); }, 300);
     }
 
     componentDidMount() {
@@ -59,7 +61,7 @@ class CalcContainer extends Component {
                             <CalcKeyboard keys={this.keyboardKeys} keyHandler={this.props.keyHandler} highlight={this.state.highlight} />
                         </div>
                         <div className="col-md-5">
-                            <CalcOperatorboard keys={this.operatorKeys} opHandler={this.props.opHandler} />
+                            <CalcOperatorboard keys={this.operatorKeys} opHandler={this.props.opHandler} highlight={this.state.highlight} />
                         </div>
                     </div>
                 </div>

@@ -14,7 +14,10 @@ class CalcOperatorboard extends Component {
         super(props);
     }
 
-    shouldComponentUpdate() {
+    shouldComponentUpdate(nextProps) {
+        if(nextProps.highlight != this.props.highlight) {
+            return true;
+        }
         return false;
     }
 
@@ -29,7 +32,8 @@ class CalcOperatorboard extends Component {
                     os.map((o) => {
                         const reactKey = `react_key_operator_${o}`;
 
-                        return <CalcKey bootstrapCols="col-md-6" opHandler={this.props.opHandler} key={reactKey}>{o}</CalcKey>;
+                        return <CalcKey opHandler={this.props.opHandler} key={reactKey}
+                                    highlight={this.props.highlight === o} bootstrapCols="col-md-6" >{o}</CalcKey>;
                     })
                 }
             </div>;
