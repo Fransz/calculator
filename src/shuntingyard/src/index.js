@@ -1,9 +1,11 @@
+/* global module */
 "use strict";
 
 const operators = {
     "^": { associativity: "right", precedence: 4, function: (a, b) => { return Math.pow(a, b); } },
     "*": { associativity: "left", precedence: 3, function: (a, b) => { return a * b; } },
     "/": { associativity: "left", precedence: 3, function: (a, b) => { return a / b; } },
+    "%": { associativity: "left", precedence: 3, function: (a, b) => { return a / 100 * b; } },
     "+": { associativity: "left", precedence: 2, function: (a, b) => { return a + b; } },
     "-": { associativity: "left", precedence: 2, function: (a, b) => { return a - b; } },
 };

@@ -110,6 +110,10 @@ describe("shuntingYard", function() {
             rpn.shuntingYard([3, "-", 2]).should.be.eql([3, 2, "-"]);
         });
 
+        it("should be correct using percentage", function() {
+            rpn.shuntingYard([30, "%", 5]).should.be.eql([30, 5, "%"]);
+        });
+
         it("should be correct on a more complex calculation", function() {
             rpn.shuntingYard([5, "+", "(", 1, "+", 2, ")", "*", 4, "-", 3]).should.be.eql([17, 3, "-"]);
             rpn.shuntingYard([3, "+", 4, "*", 2, "/", "(", 1, "-", 5, ")", "^", 2, "^", 3]).should.be.eql([3, 8, -4, 2, 3, "^", "^", "/", "+"]);
@@ -118,15 +122,25 @@ describe("shuntingYard", function() {
 });
 
 describe("rpn", function() {
-    describe("return value", function() {
-        it("should be an Array", function() {
+    describe("return values", function() {
+        it("should be an Array", function () {
             rpn.rpn([1, 2, "+"]).should.be.a.Array();
         });
 
-        it("should return 0 on empty input", function() {
+        it("should be [0] on empty input", function () {
             rpn.rpn([]).should.be.eql([]);
         });
 
+        it("should be able to become negative", function () {
+            rpn.rpn([2, 3, "-"]).should.be.eql([-1]);
+        });
+
+        it("should be able to become fractional", function () {
+            rpn.rpn([2, 3, "/"]).should.be.eql([2 / 3]);
+        });
+    });
+
+    describe("calculations", function() {
         it("should be correct using division", function() {
             rpn.rpn([6, 2, "/"]).should.be.eql([3]);
         });
@@ -143,6 +157,15 @@ describe("rpn", function() {
             rpn.rpn([3, 2, "-"]).should.be.eql([1]);
         });
 
+        it("should be correct using percentage", function() {
+            rpn.rpn([0, 5, "%"]).should.be.eql([0]);
+            rpn.rpn([30, 5, "%"]).should.be.eql([1.5]);
+            rpn.rpn([300, 10, "%", 5, "%"]).should.be.eql([1.5]);
+
+            // todo
+            // rpn.rpn([30, 0, "%"]).should.throw
+        });
+
         it("should be correct on a more complex calculation", function() {
             rpn.rpn([5, 1, 2, "+", 4, "*", "+", 3, "-"]).should.be.eql([14]);
             rpn.rpn([3, 4, 2, "*", 1, 5, "-", 2, 3, "^", "^", "/", "+"]).should.be.eql([3.0001220703125]);
@@ -152,16 +175,8 @@ describe("rpn", function() {
             rpn.rpn([2, -3, "-"]).should.be.eql([5]);
         });
 
-        it("should be able to become negative", function() {
-            rpn.rpn([2, 3, "-"]).should.be.eql([-1]);
-        });
-
         it("should be able to handle fractional values", function() {
             rpn.rpn([3/2, 2, "*"]).should.be.eql([3]);
-        });
-
-        it("should be able to become fractional", function() {
-            rpn.rpn([2, 3, "/"]).should.be.eql([2/3]);
         });
     });
 });
