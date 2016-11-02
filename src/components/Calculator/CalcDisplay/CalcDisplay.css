@@ -1,0 +1,10 @@
+.root{
+    border-bottom: 2px solid gray;
+    line-height: 3em;
+
+    padding-right: 1em;
+
+    text-align: right;
+
+    font-size:1.5em;
+}

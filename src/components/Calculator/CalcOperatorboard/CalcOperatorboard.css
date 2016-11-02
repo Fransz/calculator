@@ -1,0 +1,12 @@
+.root {
+    border-left: 2px solid gray;
+    line-height: 3em;
+    margin-left: -30px;
+    margin-right: 0px;
+}
+
+.operatorrow {
+    margin-left: 25px;
+    margin-right: 25px;
+}
+

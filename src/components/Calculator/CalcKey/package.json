@@ -1,0 +1,6 @@
+{
+  "name": "CalcKey",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./CalcKey.js"
+}

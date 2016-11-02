@@ -1,0 +1,6 @@
+{
+  "name": "CalcContainer",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./CalcContainer.js"
+}

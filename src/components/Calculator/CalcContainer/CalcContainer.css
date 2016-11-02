@@ -1,0 +1,10 @@
+.root {
+    margin-top:25vh;
+    border:2px solid black;
+    border-radius: 7px;
+    padding:0 0;
+}
+
+div:focus {
+    outline:none;
+}
