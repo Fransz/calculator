@@ -14,10 +14,8 @@ class CalcKeyboard extends Component {
     }
 
     shouldComponentUpdate(nextProps) {
-        if(nextProps.highlight != this.props.highlight) {
-            return true;
-        }
-        return false;
+        return nextProps.highlight != this.props.highlight;
+
     }
 
     renderKeys() {
