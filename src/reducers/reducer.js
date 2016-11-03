@@ -49,15 +49,18 @@ function input(inp = [""], last="", action) {
 
         case "ADD_KEY":
             if(last === "ADD_OPERATOR" || last === "ADD_PARENTHESES") {
+                // adjust the last input after an operator or parenthesis.
                 inp[inp.length] = (action.key === "." ? "0" : "") + action.key;
             } else if (last === "CALCULATE" || last === "@@redux/INIT") {
+                // create a new last input after a calculation or initialisation.
                 inp = [ (action.key === "." ? "0" : "") + action.key ];
             }
             else {
+                // Otherwise just add the key.
                 inp[inp.length - 1] += action.key;
             }
 
-            // strip multiple dots from the current input.
+            // strip multiple dots from the last input.
             inp[inp.length - 1] = oneDot(inp[inp.length - 1]);
 
             return inp;
