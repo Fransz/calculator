@@ -54,13 +54,13 @@ class CalcContainer extends Component {
     render() {
         return <div tabIndex="1" ref={(e) => this.calcContainer = e} onKeyUp={e => this.handleKeyUp(e)}>
             <div className="row">
-                <div className={`col-md-offset-3 col-md-5 ${s.root}`}>
+                <div className={`col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-5 ${s.root}`}>
                     <div className="row">
-                        <div className="col-md-7">
+                        <div className="col-xs-7">
                             <CalcDisplay value={this.props.displayValue}/>
                             <CalcKeyboard keys={this.keyboardKeys} keyHandler={this.props.keyHandler} highlight={this.state.highlight} />
                         </div>
-                        <div className="col-md-5">
+                        <div className="col-xs-5">
                             <CalcOperatorboard keys={this.operatorKeys} opHandler={this.props.opHandler} highlight={this.state.highlight} />
                         </div>
                     </div>

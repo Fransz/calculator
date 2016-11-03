@@ -30,7 +30,7 @@ class CalcOperatorboard extends Component {
                         const reactKey = `react_key_operator_${o}`;
 
                         return <CalcKey opHandler={this.props.opHandler} key={reactKey}
-                                    highlight={this.props.highlight === o} bootstrapCols="col-md-6" >{o}</CalcKey>;
+                                    highlight={this.props.highlight === o} bootstrapCols="col-xs-6" >{o}</CalcKey>;
                     })
                 }
             </div>;

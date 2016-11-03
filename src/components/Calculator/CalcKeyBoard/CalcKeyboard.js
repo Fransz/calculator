@@ -31,7 +31,7 @@ class CalcKeyboard extends Component {
                             const reactKey = `react_key_calc_${k}`;
 
                             return <CalcKey keyHandler={this.props.keyHandler} key={reactKey}
-                                 highlight={this.props.highlight === k} bootstrapCols="col-md-4">{k}
+                                 highlight={this.props.highlight === k} bootstrapCols="col-xs-4">{k}
                             </CalcKey>;
                         })
                     }
